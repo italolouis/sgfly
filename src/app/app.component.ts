@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sgfly';
+
+  status = false;
+  addToggle() {
+    this.status = !this.status;
+  }
 }
