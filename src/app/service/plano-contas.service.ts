@@ -12,8 +12,19 @@ export class PlanoContasService {
     private http: HttpClient
   ) { }
 
+  cadastrarPlanoContas(data: any): Observable<any[]> {
+    return this.http.post<any>(this.url, data);
+  }
+
+  getPlanosConta(): Observable<any[]> {
+    return this.http.get<any[]>(this.url);
+  }
+
   getPeriodicidade(): Observable<any[]> {
     return this.http.get<any[]>(this.url + '/periodicidade');
+  }
+  getAllPlanosConta(): Observable<any[]> {
+    return this.http.get<any[]>(this.url+ '/allPlans');
   }
 
 }

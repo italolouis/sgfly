@@ -1,36 +1,42 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
   <form [formGroup]="formPlanoContas" (ngSubmit)="onSubmit()">
-    <div class="form-group mb-3">
+    <div class="form-group col-md-1">
       <label for="descricao">Plano</label>
-      <input id="descricao"  type="text" class="form-control"
-             [formControl]="formPlanoContas.controls['descricao']"
-             formControlName="descricao" required>
+      <mat-form-field class="descricaoPlanoContas">
+        <input id="descricao" matInput
+               [formControl]="formPlanoContas.controls['descricao']"
+               formControlName="descricao">
+      </mat-form-field>
     </div>
 
-    <div class="form-check mb-3">
-      <input id="padrao" class="form-check-input" type="checkbox"
-             [formControl]="formPlanoContas.controls['padrao']"
-             formControlName="padrao" >
+    <div class="mb-3 col-md-1">
       <label class="form-check-label" for="padrao">Padrão</label>
+      <mat-slide-toggle id="padrao"
+                        [formControl]="formPlanoContas.controls['padrao']"
+                        formControlName="padrao" >
+      </mat-slide-toggle>
     </div>
 
     <div class="form-group mb-3 col-md-6">
       <label for="periodicidade">Periodicidade</label>
-      <select id="periodicidade" class="form-control"
-              [formControl]="formPlanoContas.controls['periodicidade']"
-              formControlName="periodicidade">
-        <option *ngFor="let periodicidade of listPeriodicidade" value="{{ periodicidade }}">
-          {{ periodicidade }}
-        </option>
-      </select>
+      <mat-form-field id="periodicidade" appearance="fill">
+        <mat-select [formControl]="formPlanoContas.controls['periodicidade']"
+                    formControlName="periodicidade">
+          <mat-option *ngFor="let periodicidade of listPeriodicidade" value="{{ periodicidade }}">
+            {{ periodicidade }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-    <div class="form-group mb-3 col-md-8">
+    <div class="col-md-12 row">
       <div class="col-md-6">
-        <label for="dataInicial">Data Inicial</label>
+        <label for="dataInicio">Data Inicial</label>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker1" name="dataInicio" id="dataInicio">
+          <input id="dataInicio" matInput [matDatepicker]="picker1"
+                 [formControl]="formPlanoContas.controls['dataInicio']"
+                 formControlName="dataInicio">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 ></mat-datepicker>
         </mat-form-field>
@@ -38,15 +44,17 @@
       <div class="col-md-6">
         <label for="dataFim">Data Final</label>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker2" name="dataFim" id="dataFim">
+          <input id="dataFim" matInput [matDatepicker]="picker2"
+                 [formControl]="formPlanoContas.controls['dataFim']"
+                 formControlName="dataFim">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2 ></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
     <div>
-      <input type="submit" class="btn btn-primary mt-4 gap-button" value="Salvar">
-      <a href="#" class="btn btn-secondary mt-4 ml-2">Cancelar</a>
+      <button type="submit" class="btn btn-primary mt-4 gap-button">Salvar</button>
+      <button type="button" class="btn btn-secondary mt-4 ml-2" (click)="cancel()">Cancelar</button>
     </div>
   </form>
 </div>

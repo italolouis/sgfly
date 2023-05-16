@@ -13,10 +13,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from '@angular/material/core';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from "@angular/material/input";
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import { DespesasComponent } from './pages/despesas/despesas.component';
+import { CadastraDespesasComponent } from './pages/despesas/cadastra-despesas/cadastra-despesas.component';
 
 @NgModule({
   declarations: [
@@ -24,23 +29,31 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     PlanoContasComponent,
     CadastraPlanoContasComponent,
+    DespesasComponent,
+    CadastraDespesasComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    HttpClientModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        HttpClientModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatSlideToggleModule,
+        NgxDatatableModule
+    ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' }
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

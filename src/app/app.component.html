@@ -17,7 +17,7 @@
       </a>
     </li>
     <li>
-      <a>
+      <a routerLink="/despesa">
         <i class='bx bi-building-dash' ></i>
         <span class="text">Despesas</span>
       </a>
@@ -47,10 +47,10 @@
 <section id="content">
   <nav>
     <i (click)="addToggle()" class='bx bx-menu' ></i>
-    <a class="nav-link">Categories</a>
+    <!--<a class="nav-link">Categories</a>-->
     <form action="#">
       <div class="form-input">
-        <input type="search" placeholder="Search...">
+        <input type="search" placeholder="Pesquisar">
         <button type="button" class="search-btn"><i class='bx bx-search' ></i></button>
       </div>
     </form>
@@ -61,7 +61,7 @@
     <a class="profile">
     </a>
   </nav>
-  <main>
+  <main style="width: 100%; height: 100%;">
     <router-outlet></router-outlet>
   </main>
 </section>

@@ -7,7 +7,7 @@
       </li>
       <li><i class='bx bx-chevron-right' ></i></li>
       <li>
-        <a class="active">Home</a>
+        <a class="active">Dashboard</a>
       </li>
     </ul>
   </div>
@@ -16,31 +16,49 @@
     <span class="text">Download PDF</span>
   </a>-->
 </div>
-<div class="box-info">
+<div style="height: 740px;">
   <div class="row box-info-detail">
     <div class="col-md-12 col-xs-12">
       <form id="form-extrato-geral">
         <div class="col-md-12 col-xs-12">
           <div class="form-row align-items-center">
-            <div class="mb-3 col-md-4">
-              <label for="" class="form-label">Plano</label>
-              <!--<input class="form-control" name="plano" id="plano" type="text"
-                     formControl="formExtratoContaOrbital.controls.plano"
-                     formControlName="plano"/>-->
+            <div class="mb-3 col-md-1">
+              <label for="plano">Plano</label>
+              <mat-form-field id="plano" class="descricaoPlanoContas">
+                <input matInput>
+              </mat-form-field>
             </div>
           </div>
           <div class="row text-right">
             <div class="col">
-              <button type="button"class="btn btn-primary gap-button">
-                Pesquisar
-              </button>
-              <button type="button" class="btn btn-secondary" (click)="openDialog()">
+              <button type="button" class="btn btn-secondary gap-button" (click)="openDialog()">
                 Novo
+              </button>
+              <button type="button"class="btn btn-primary">
+                Pesquisar
               </button>
             </div>
           </div>
         </div>
       </form>
+      <div class="mt-5">
+        <ngx-datatable
+          class="bootstrap"
+          [rows]="datatablePagination.rowData"
+          [columns]="columns"
+          [columnMode]="'force'"
+          [headerHeight]="40"
+          [summaryRow]="true"
+          [summaryPosition]="'bottom'"
+          [footerHeight]="40"
+          [limit]="10"
+          [rowHeight]="36"
+          [reorderable]="reorderable"
+          [externalPaging]="true"
+          [count]="datatablePagination.totalElements"
+          [offset]="datatablePagination.currentPage">
+        </ngx-datatable>
+      </div>
     </div>
   </div>
 </div>
