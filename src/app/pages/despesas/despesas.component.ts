@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {DatatablePagination} from "../../shared/datatable-pagination";
 import {MatDialog} from "@angular/material/dialog";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {PlanoContasService} from "../../service/plano-contas.service";
 import {DatatablePaginationService} from "../../service/datatable-pagination.service";
-import {CadastraPlanoContasComponent} from "../plano-contas/cadastra-plano-contas/cadastra-plano-contas.component";
 import {CadastraDespesasComponent} from "./cadastra-despesas/cadastra-despesas.component";
 import {DespesasService} from "../../service/despesas.service";
 import {PlanoContas} from "../../shared/plano-contas";
+import * as moment from 'moment';
+import {HttpParams} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-despesas',
@@ -15,30 +17,19 @@ import {PlanoContas} from "../../shared/plano-contas";
   styleUrls: ['./despesas.component.scss']
 })
 export class DespesasComponent implements OnInit{
-  formExtratoContaOrbital = null ;
-  tableLimit = 20;
-  columns = [
-    { prop: 'descricao', name: 'Despesa' },
-    { prop: 'planoContas', name: 'Plano'},
-    { prop: 'valor', name: 'Valor' },
-    { prop: 'periodicidade', name: 'Periodicidade', sortable: false },
-    { prop: 'dataInicio', name: 'Data Início', sortable: false },
-    { prop: 'dataFim', name: 'Data Fim', sortable: false },
-  ];
-
+  tableLimit = 8;
   id?: number;
   descricao: string = '';
   valor?: number;
   planoContas?: PlanoContas;
   data?: Date;
-  categoria: string = '';
-  observacao: string = '';
-  dataVencimento?: Date;
-  pago: boolean = false;
-  loadingIndicator = true;
-  reorderable = true;
   datatablePagination: DatatablePagination = new DatatablePagination()
   listPlanoContas: any[] = [];
+
+  dateRange = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
 
   private listCategorias: any[] = [];
 
@@ -86,17 +77,41 @@ export class DespesasComponent implements OnInit{
   }
 
   getDespesas(data?: any, page?: string): void{
-    this.despesaService.getDespesas()
+    let params = new HttpParams();
+
+    if (page) {
+      params = params.append('page', String(page));
+    }
+
+    params = params.append('size', String(this.tableLimit))
+
+    this.despesaService.getDespesas(params)
       .subscribe((response) =>
         this.paginationService.setInfo(response));
   }
 
-  toggleExpandRow(row: any) {
-    console.log('Toggled Expand Row!', row);
+  formatarDataExtenso(data: Date) {
+    moment.locale('pt');
+    moment.updateLocale('pt', {
+      months : [
+        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+        'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
+      ]});
+
+    var dataMoment = moment(data, 'DD/MM/YYYY')
+    return moment(dataMoment).format('DD MMMM YYYY');;
   }
 
-  onDetailToggle(event: any) {
-    console.log('Detail Toggled', event);
+  formatarDecimal(value : number){
+    return value.toFixed(2);
+  }
+
+  formatarSimNao(value: boolean){
+    if(value === true){
+      return "Sim";
+    }else{
+      return "Não";
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { DespesasComponent } from './pages/despesas/despesas.component';
 import { CadastraDespesasComponent } from './pages/despesas/cadastra-despesas/cadastra-despesas.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -32,27 +33,29 @@ import { CadastraDespesasComponent } from './pages/despesas/cadastra-despesas/ca
     DespesasComponent,
     CadastraDespesasComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatFormFieldModule,
-        MatInputModule,
-        HttpClientModule,
-        MatSelectModule,
-        MatRadioModule,
-        MatSlideToggleModule,
-        NgxDatatableModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    HttpClientModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    NgxDatatableModule,
+    MatTabsModule
+  ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' }
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

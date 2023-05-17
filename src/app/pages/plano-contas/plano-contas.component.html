@@ -16,15 +16,15 @@
     <span class="text">Download PDF</span>
   </a>-->
 </div>
-<div style="height: 740px;">
+<div style="height: 720px;">
   <div class="row box-info-detail">
     <div class="col-md-12 col-xs-12">
-      <form id="form-extrato-geral">
-        <div class="col-md-12 col-xs-12">
+      <form class="w-100">
+        <div class="col-md-12 col-xs-12" >
           <div class="form-row align-items-center">
             <div class="mb-3 col-md-1">
-              <label for="plano">Plano</label>
               <mat-form-field id="plano" class="descricaoPlanoContas">
+                <mat-label>Plano</mat-label>
                 <input matInput>
               </mat-form-field>
             </div>
@@ -41,9 +41,10 @@
           </div>
         </div>
       </form>
-      <div class="mt-5">
+      <div class="col-md-12 mt-4">
         <ngx-datatable
-          class="bootstrap"
+          #myTable
+          class="bootstrap material"
           [rows]="datatablePagination.rowData"
           [columns]="columns"
           [columnMode]="'force'"

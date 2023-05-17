@@ -1,152 +1,153 @@
-<div class="head-title">
-  <div class="left">
-    <h1>Despesas</h1>
-    <ul class="breadcrumb">
-      <li>
-        <a>Despesas</a>
-      </li>
-      <li><i class='bx bx-chevron-right' ></i></li>
-      <li>
-        <a class="active">Dashboard</a>
-      </li>
-    </ul>
-  </div>
-  <!--<a href="#" class="btn-download">
-    <i class='bx bxs-cloud-download' ></i>
-    <span class="text">Download PDF</span>
-  </a>-->
-</div>
-<div style="height: 740px;">
-  <div class="row box-info-detail">
-    <div class="col-md-12 col-xs-12">
-      <form id="form-extrato-geral">
-        <div class="col-md-12 col-xs-12">
-          <div class="form-group col-md-1">
-            <label for="plano">Plano</label>
-            <mat-form-field id="plano" class="campoPlanoCategoria">
-              <mat-select >
-                <mat-option *ngFor="let plano of listPlanoContas" value="{{ plano.id }}">
-                  {{ plano['descricao'] }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="row text-right">
-            <div class="col">
-              <button type="button" class="btn btn-secondary gap-button" (click)="openDialog()">
-                Novo
-              </button>
-              <button type="button"class="btn btn-primary ">
-                Pesquisar
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-
-      <div class="col-md-12 mt-3" id="tableExtratoPlano">
-        <ngx-datatable
-          #myTable
-          class="material bootstrap"
-          [rows]="datatablePagination.rowData"
-          [groupRowsBy]="'categoria'"
-          [groupExpansionDefault]="true"
-          [columnMode]="'force'"
-          [headerHeight]="50"
-          [footerHeight]="50"
-          [rowHeight]="40"
-          [limit]="tableLimit"
-          [externalPaging]="true"
-          [offset]="datatablePagination.currentPage"
-          [count]="datatablePagination.totalElements"
-          [messages]="{emptyMessage: 'Sem dados...'}">
-          <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader>
-            <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
-              <div class="p-2">
-                <div class="row">
-                  <div class="col-md-10">
-                    <span class="font-weight-bold">{{group.value[0].categoria}}</span>
-                  </div>
-                  <!--<div class="col-md-2 text-right">
-                    <span class="font-weight-bold">Saldo do dia: </span>
-                    <span class="font-weight-bold">{{ sumValor(group) | currency:'BRL':'symbol':'0.2-2':'pt' }}</span>
-                  </div>-->
-                </div>
-              </div>
-            </ng-template>
-          </ngx-datatable-group-header>
-          <ngx-datatable-column name="Despesa" prop="descricao" [width]="100" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-            <div class="text-right">
-              {{ row.descricao }}
-            </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Plano" prop="planoContas" [width]="40" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.planoContas.id }} - {{row.planoContas.descricao}}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Categoria" prop="categoria" [width]="40" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.categoria }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Pago" prop="pago" [width]="40" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.pago }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Valor" prop="descricao" [width]="40" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.valor }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-         <!-- <ngx-datatable-column name="Transação" prop="descricao" [width]="340" [sortable]="false"></ngx-datatable-column>
-          <ngx-datatable-column name="Tipo" prop="tipo" [sortable]="false" [width]="200" >
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-center">
-                {{ formatTipo(row.tipo) }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-
-          <ngx-datatable-column name="Valor" prop="valor" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ formatValor(row) | currency:'BRL':'symbol':'0.2-2':'pt'}}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-footer>
-            <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
-                         let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset">
-              <div>
-                <div class="page-count">
-                  Total de Registros: {{rowCount}}
-                </div>
-              </div>
-              <datatable-pager #tablePager
-                               [pagerLeftArrowIcon]="'fa fa-angle-double-left'"
-                               [pagerRightArrowIcon]="'fa fa-angle-double-right '" [pagerPreviousIcon]="'fa fa-angle-left'"
-                               [pagerNextIcon]="'fa fa-angle-right '" [page]="curPage" [size]="pageSize" [count]="rowCount"
-                               [hidden]="!((rowCount / pageSize) > 1)"
-                               (change)="getDespesas(formExtratoContaOrbital.value, $event.page-1)">
-              </datatable-pager>
-            </ng-template>
-          </ngx-datatable-footer>-->
-        </ngx-datatable>
-      </div>
-
-
+<div class="h-100">
+  <div class="head-title">
+    <div class="left">
+      <h1>Despesas</h1>
+      <ul class="breadcrumb">
+        <li>
+          <a>Despesas</a>
+        </li>
+        <li><i class='bx bx-chevron-right' ></i></li>
+        <li>
+          <a class="active">Dashboard</a>
+        </li>
+      </ul>
     </div>
   </div>
+  <div style="height: 740px;">
+    <div class="box-info-detail">
+      <div class="col-md-12 col-xs-12">
+        <form id="form-extrato-geral" >
+          <div class="col-md-12 col-xs-12" >
+            <div class="row">
+              <div class="col-md-2">
+                <mat-form-field id="plano" class="campoPlanoCategoria">
+                  <mat-label>Plano</mat-label>
+                  <mat-select >
+                    <mat-option *ngFor="let plano of listPlanoContas" value="{{ plano.id }}">
+                      {{ plano['descricao'] }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field>
+                  <mat-label>Período</mat-label>
+                  <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
+                    <input matStartDate formControlName="start" placeholder="Início">
+                    <input matEndDate formControlName="end" placeholder="Fim">
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row text-right">
+              <div class="col">
+                <button type="button" class="btn btn-secondary gap-button" (click)="openDialog()">
+                  Novo
+                </button>
+                <button type="button"class="btn btn-primary ">
+                  Pesquisar
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="col-md-12 mt-3" id="tableDespesas">
+          <ngx-datatable
+            #myTable
+            class="material bootstrap"
+            [rows]="datatablePagination.rowData"
+            [groupRowsBy]="'dataVencimento'"
+            [groupExpansionDefault]="true"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="36"
+            [limit]="tableLimit"
+            [externalPaging]="true"
+            [offset]="datatablePagination.currentPage"
+            [count]="datatablePagination.totalElements"
+            [messages]="{emptyMessage: 'Sem dados...'}">
+            <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader>
+              <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+                <div class="p-2">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <span class="fw-bold">{{formatarDataExtenso(group.value[0].dataVencimento)}}</span>
+                    </div>
+                    <!--<div class="col-md-2 text-right">
+                      <span class="font-weight-bold">Saldo do dia: </span>
+                      <span class="font-weight-bold">{{ sumValor(group) | currency:'BRL':'symbol':'0.2-2':'pt' }}</span>
+                    </div>-->
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-group-header>
+            <ngx-datatable-column name="Despesa" prop="descricao" [width]="100" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="text-right">
+                  {{ row.descricao }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Plano" prop="planoContas" [width]="40" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="text-right">
+                  {{ row.planoContas.id }} - {{row.planoContas.descricao}}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Categoria" prop="categoria" [width]="40" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="text-right">
+                  {{ row.categoria }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Pago" prop="pago" [width]="40" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="text-right">
+                  {{ formatarSimNao(row.pago) }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Vencimento" prop="dataVencimento" [width]="40" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="text-right">
+                  {{ row.dataVencimento }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Valor" prop="valor" [width]="40" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="text-left">
+                  {{ formatarDecimal(row.valor) }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+             <ngx-datatable-footer>
+               <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                            let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset">
+                 <div>
+                   <div class="page-count">
+                     Total de Registros: {{rowCount}}
+                   </div>
+                 </div>
+                 <datatable-pager #tablePager
+                                  [pagerLeftArrowIcon]="'fa fa-angle-double-left'"
+                                  [pagerRightArrowIcon]="'fa fa-angle-double-right '" [pagerPreviousIcon]="'fa fa-angle-left'"
+                                  [pagerNextIcon]="'fa fa-angle-right '" [page]="curPage" [size]="pageSize" [count]="rowCount"
+                                  [hidden]="!((rowCount / pageSize) > 1)"
+                                  (change)="getDespesas(null, $event.page-1)">
+                 </datatable-pager>
+               </ng-template>
+             </ngx-datatable-footer>-->
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

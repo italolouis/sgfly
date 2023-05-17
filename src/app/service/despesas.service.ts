@@ -16,8 +16,8 @@ export class DespesasService {
     return this.http.post<any>(this.url, data);
   }
 
-  getDespesas(): Observable<any[]> {
-    return this.http.get<any[]>(this.url);
+  getDespesas(data: any): Observable<any[]> {
+    return this.http.get<any[]>(this.url, {params : data});
   }
 
   getCategorias(): Observable<any[]> {

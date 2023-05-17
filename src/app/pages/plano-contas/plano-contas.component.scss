@@ -15,3 +15,20 @@
 .descricaoPlanoContas{
   width: 400px;
 }
+
+:host ::ng-deep ngx-datatable.fixed-header .datatable-header {
+  .datatable-header-inner .datatable-header-cell {
+    font-weight: bold;
+    border-right: none;
+  }
+}
+
+:host ::ng-deep ngx-datatable .datatable-body .datatable-scroll {
+  display: inline-block;
+  padding-right: 1px;
+}
+
+:host ::ng-deep ngx-datatable .datatable-body .datatable-body-row>div {
+  display: flex;
+  margin-left: -3px;
+}

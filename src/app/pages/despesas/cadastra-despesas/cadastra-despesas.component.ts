@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {PlanoContasService} from "../../../service/plano-contas.service";
 import {PlanoContas} from "../../../shared/plano-contas";
 import {Despesa} from "../../../shared/despesa";
 import {DespesasService} from "../../../service/despesas.service";
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-cadastra-despesas',
@@ -55,6 +55,7 @@ export class CadastraDespesasComponent implements OnInit{
     }
 
     data.valor = parseFloat(data.valor);
+    data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY HH:mm:ss')
 
     this.despesasService.cadastrarDespesas(data)
       .subscribe(

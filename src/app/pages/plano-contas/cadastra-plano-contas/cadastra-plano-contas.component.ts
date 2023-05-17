@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {PlanoContas} from "../../../shared/plano-contas";
 import {PlanoContasService} from "../../../service/plano-contas.service";
+import * as moment from "moment/moment";
 
 @Component({
   selector: 'app-cadastra-plano-contas',
@@ -39,6 +40,11 @@ export class CadastraPlanoContasComponent implements OnInit{
   }
 
   onSubmit() {
+    var data = this.formPlanoContas.value;
+
+    data.dataInicio = (moment(data.dataInicio)).format('DD/MM/YYYY HH:mm:ss');
+    data.dataFim = (moment(data.dataFim)).format('DD/MM/YYYY HH:mm:ss');
+
     this.planoContasService.cadastrarPlanoContas(this.formPlanoContas.value)
       .subscribe(
         response => {
