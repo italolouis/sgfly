@@ -25,13 +25,12 @@ export class DespesasComponent implements OnInit{
   data?: Date;
   datatablePagination: DatatablePagination = new DatatablePagination()
   listPlanoContas: any[] = [];
+  listCategorias: any[] = [];
 
   dateRange = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
   });
-
-  private listCategorias: any[] = [];
 
   constructor(
     public dialog: MatDialog,

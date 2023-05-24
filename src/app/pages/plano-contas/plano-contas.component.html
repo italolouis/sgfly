@@ -22,8 +22,8 @@
       <form class="w-100">
         <div class="col-md-12 col-xs-12" >
           <div class="form-row align-items-center">
-            <div class="mb-3 col-md-1">
-              <mat-form-field id="plano" class="descricaoPlanoContas">
+            <div class="mb-3 col-md-4">
+              <mat-form-field id="plano" class="full-width-field">
                 <mat-label>Plano</mat-label>
                 <input matInput>
               </mat-form-field>
@@ -58,6 +58,42 @@
           [externalPaging]="true"
           [count]="datatablePagination.totalElements"
           [offset]="datatablePagination.currentPage">
+
+          <ngx-datatable-column name="Plano" prop="descricao" [width]="200" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="text-right">
+                {{ row.descricao }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Padrão" prop="padrao" [width]="200" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="text-right">
+                {{ getSimNao(row.padrao) }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Periodicidade" prop="periodicidade" [width]="200" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="text-right">
+                {{ row.periodicidade }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Data Início" prop="dataInicio" [width]="200" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="text-right">
+                {{ row.dataInicio }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+           <ngx-datatable-column name="Data Fim" prop="dataFim" [width]="200" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="text-right">
+                {{ row.dataFim }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
         </ngx-datatable>
       </div>
     </div>

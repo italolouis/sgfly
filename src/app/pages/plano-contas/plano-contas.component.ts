@@ -66,4 +66,12 @@ export class PlanoContasComponent implements OnInit{
       .subscribe((response) =>
         this.paginationService.setInfo(response));
   }
+
+  getSimNao(value : boolean){
+    if (value === true){
+      return 'Sim';
+    }else{
+      return 'Não';
+    }
+  }
 }
