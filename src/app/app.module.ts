@@ -23,6 +23,8 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { DespesasComponent } from './pages/despesas/despesas.component';
 import { CadastraDespesasComponent } from './pages/despesas/cadastra-despesas/cadastra-despesas.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     CadastraPlanoContasComponent,
     DespesasComponent,
     CadastraDespesasComponent,
+    LoginComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,

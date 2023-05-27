@@ -36,7 +36,7 @@ export class PlanoContasComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getPeriodicidadeData();
+    //this.getPeriodicidadeData();
     this.getPlanoContasData();
   }
   openDialog(): void {
@@ -63,8 +63,13 @@ export class PlanoContasComponent implements OnInit{
 
   getPlanoContasData(): void{
     this.planoContasService.getPlanosConta()
-      .subscribe((response) =>
-        this.paginationService.setInfo(response));
+      .then((response) => {
+        console.log(response)
+        this.paginationService.setInfo(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   getSimNao(value : boolean){

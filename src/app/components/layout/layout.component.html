@@ -1,0 +1,61 @@
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a class="brand">
+    <i class='bx bi-graph-up-arrow' ></i>
+    <span class="text">SGFly</span>
+  </a>
+  <ul class="side-menu top">
+    <li class="active">
+      <a routerLink="/">
+        <i class='bx bi-house' ></i>
+        <span class="text" >Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/planoContas">
+        <i class='bx bi-cash-coin' ></i>
+        <span class="text">Plano de Contas</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/despesa">
+        <i class='bx bi-building-dash' ></i>
+        <span class="text">Despesas</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a>
+        <i class='bx bi-gear' ></i>
+        <span class="text">Configurações</span>
+      </a>
+    </li>
+    <li>
+      <a class="logout">
+        <i class='bx bi-box-arrow-right' ></i>
+        <span class="text">Sair</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<section id="content">
+  <nav>
+    <i (click)="addToggle()" class='bx bx-menu' ></i>
+    <!--<a class="nav-link">Categories</a>-->
+    <form action="#">
+      <div class="form-input">
+        <input type="search" placeholder="Pesquisar">
+        <button type="button" class="search-btn"><i class='bx bx-search' ></i></button>
+      </div>
+    </form>
+    <a class="notification">
+      <i class='bx bxs-bell' ></i>
+      <span class="num">8</span>
+    </a>
+    <a class="profile">
+    </a>
+  </nav>
+  <main class="vh-100">
+    <router-outlet></router-outlet>
+  </main>
+</section>
