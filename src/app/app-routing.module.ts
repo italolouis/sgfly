@@ -7,8 +7,8 @@ import {LoginComponent} from "./pages/login/login.component";
 import {LayoutComponent} from "./components/layout/layout.component";
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: '', component: LayoutComponent, children:
+  {path: '', component: LoginComponent},
+  {path: 'sg', component: LayoutComponent, children:
     [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'planoContas', component: PlanoContasComponent},

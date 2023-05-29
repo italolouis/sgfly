@@ -58,10 +58,9 @@ export class CadastraDespesasComponent implements OnInit{
     data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY HH:mm:ss')
 
     this.despesasService.cadastrarDespesas(data)
-      .subscribe(
-        response => {
-          this.cancel();
-        });
+      .then((response) => {
+        this.cancel();
+      });
   }
 
 }

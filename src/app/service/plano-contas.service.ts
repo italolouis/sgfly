@@ -25,39 +25,21 @@ httpClient.interceptors.request.use(function (config) {
   providedIn: 'root'
 })
 export class PlanoContasService {
-
-  url = 'http://localhost:8084/services/planoContas';
-
   constructor(
-    private http: HttpClient,
-    private auth: AuthService
   ) { }
 
-
-  cadastrarPlanoContas(data: any): Observable<any[]> {
-    const headers = {
-      'Authorization': 'Bearer ' + this.auth.getAccessToken()
-    }
-    return this.http.post<any>(this.url, data, {headers});
+  cadastrarPlanoContas(data: any) {
+    return Api.post('/planoContas', data)
   }
 
   getPlanosConta(){
-    return Api.get('/services/planoContas');
+    return Api.get('/planoContas');
   }
 
-  getPeriodicidade(): Observable<any[]> {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.auth.getAccessToken()}` });
-    let options = { headers: headers };
-
-    return this.http.get<any[]>(this.url + '/periodicidade', options);
+  getPeriodicidade() {
+    return Api.get('/planoContas/periodicidade');
   }
-  getAllPlanosConta(): Observable<any[]> {
-    const headers = {
-      'Authorization': 'Bearer ' + this.auth.getAccessToken()
-    }
-    return this.http.get<any[]>(this.url+ '/allPlans', {headers});
+  getAllPlanosConta() {
+    return Api.get('/planoContas/allPlans');
   }
-
 }

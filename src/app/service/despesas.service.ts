@@ -1,27 +1,24 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import Api from "./api";
+import {objectToSearchString} from "serialize-query-params";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DespesasService {
 
-  url = 'http://localhost:8084/services/despesa';
   constructor(
-    private http: HttpClient
   ) { }
 
-  cadastrarDespesas(data: any): Observable<any[]> {
-    return this.http.post<any>(this.url, data);
+  cadastrarDespesas(data: any) {
+    return Api.post('/despesa', data)
   }
 
-  getDespesas(data: any): Observable<any[]> {
-    return this.http.get<any[]>(this.url, {params : data});
+  getDespesas(params: any) {
+    return Api.get('/despesa',  {params: params});
   }
 
-  getCategorias(): Observable<any[]> {
-    return this.http.get<any[]>(this.url + '/categorias');
+  getCategorias(){
+    return Api.get('despesa/categorias')
   }
-
 }

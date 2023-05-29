@@ -8,7 +8,6 @@ import {CadastraDespesasComponent} from "./cadastra-despesas/cadastra-despesas.c
 import {DespesasService} from "../../service/despesas.service";
 import {PlanoContas} from "../../shared/plano-contas";
 import * as moment from 'moment';
-import {HttpParams} from "@angular/common/http";
 
 
 @Component({
@@ -20,7 +19,6 @@ export class DespesasComponent implements OnInit{
   tableLimit = 8;
   id?: number;
   descricao: string = '';
-  valor?: number;
   planoContas?: PlanoContas;
   data?: Date;
   datatablePagination: DatatablePagination = new DatatablePagination()
@@ -28,9 +26,11 @@ export class DespesasComponent implements OnInit{
   listCategorias: any[] = [];
 
   dateRange = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
+    dataInicial: new FormControl(),
+    dataFinal: new FormControl()
   });
+
+  formFilterDespesas!: FormGroup;
 
   constructor(
     public dialog: MatDialog,
@@ -43,10 +43,22 @@ export class DespesasComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.createForm();
     this.getPlanoContasData();
     this.getCategoriasData();
     this.getDespesas();
   }
+
+  createForm() {
+    this.formFilterDespesas = this.formBuilder.group({
+      descricao: null,
+      planoId: null,
+      categoria: null,
+      dataInicial: null,
+      dataFinal: null
+    });
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(CadastraDespesasComponent, {
       width: '680px',
@@ -65,28 +77,41 @@ export class DespesasComponent implements OnInit{
 
   getPlanoContasData(): void{
     this.planoContasService.getAllPlanosConta()
-      .subscribe((response) =>
-        this.listPlanoContas = response)
+      .then((response) => {
+        this.listPlanoContas = response.data
+      }).catch(error => {
+      console.log(error);
+    });
   }
 
   getCategoriasData(): void{
     this.despesaService.getCategorias()
-      .subscribe((response) =>
-        this.listCategorias = response)
+      .then((response) => {
+        this.listCategorias = response.data
+      });
   }
 
   getDespesas(data?: any, page?: string): void{
-    let params = new HttpParams();
-
-    if (page) {
-      params = params.append('page', String(page));
+    var params = {
+      page : page ? String(page) : 0,
+      size : String(this.tableLimit)
     }
 
-    params = params.append('size', String(this.tableLimit))
+    /*if(data !== undefined){
+      if(data.dataInicial !== null){
+        data.dataInicial = (moment(data.dataInicial.toUTCString()).format('dd/MM/yyyy HH:mm:ss'));
+      }
+      if(data.dataFinal !== null){
+        data.dataFinal = (moment(data.dataFinal.toUTCString()).format('dd/MM/yyyy HH:mm:ss'));
+      }
+    }*/
 
-    this.despesaService.getDespesas(params)
-      .subscribe((response) =>
-        this.paginationService.setInfo(response));
+    const result = {...data, ...params};
+
+    this.despesaService.getDespesas(result)
+      .then((response) => {
+        this.paginationService.setInfo(response.data)
+      });
   }
 
   formatarDataExtenso(data: Date) {

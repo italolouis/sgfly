@@ -46,9 +46,8 @@ export class CadastraPlanoContasComponent implements OnInit{
     data.dataFim = (moment(data.dataFim)).format('DD/MM/YYYY HH:mm:ss');
 
     this.planoContasService.cadastrarPlanoContas(this.formPlanoContas.value)
-      .subscribe(
-        response => {
-          this.cancel();
-        });
+      .then((response) => {
+        this.cancel();
+      });
   }
 }

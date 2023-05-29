@@ -16,21 +16,26 @@
   <div style="height: 740px;">
     <div class="box-info-detail">
       <div class="col-md-12 col-xs-12">
-        <form id="form-extrato-geral" >
+        <form id="form-extrato-geral" [formGroup]="formFilterDespesas">
           <div class="col-md-12 col-xs-12" >
             <div class="row">
               <div class="col-md-4">
                 <mat-form-field id="descricao" class="full-width-field">
                   <mat-label>Descrição</mat-label>
-                  <input matInput>
+                  <input matInput   [formControl]="formFilterDespesas.controls['descricao']"
+                         formControlName="descricao">
                 </mat-form-field>
               </div>
               <div class="col-md-3">
                 <mat-form-field class="full-width-field">
                   <mat-label>Período</mat-label>
                   <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
-                    <input matStartDate formControlName="start" placeholder="Início">
-                    <input matEndDate formControlName="end" placeholder="Fim">
+                    <input matStartDate placeholder="Início"
+                           [formControl]="formFilterDespesas.controls['dataInicial']"
+                           formControlName="dataInicial">
+                    <input matEndDate
+                           [formControl]="formFilterDespesas.controls['dataFinal']"
+                           formControlName="dataFinal" placeholder="Fim">
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-date-range-picker #picker></mat-date-range-picker>
@@ -39,7 +44,8 @@
               <div class="col-md-3">
                 <mat-form-field id="plano" class="full-width-field">
                   <mat-label>Plano</mat-label>
-                  <mat-select >
+                  <mat-select [formControl]="formFilterDespesas.controls['planoId']"
+                              formControlName="planoId">
                     <mat-option *ngFor="let plano of listPlanoContas" value="{{ plano.id }}">
                       {{ plano['descricao'] }}
                     </mat-option>
@@ -49,7 +55,8 @@
               <div class="col-md-2">
                 <mat-form-field id="categoria" class="full-width-field">
                   <mat-label>Categoria</mat-label>
-                  <mat-select >
+                  <mat-select [formControl]="formFilterDespesas.controls['categoria']"
+                              formControlName="categoria">
                     <mat-option *ngFor="let categoria of listCategorias" value="{{ categoria }}">
                       {{ categoria }}
                     </mat-option>
@@ -62,7 +69,7 @@
                 <button type="button" class="btn btn-secondary gap-button" (click)="openDialog()">
                   Novo
                 </button>
-                <button type="button"class="btn btn-primary ">
+                <button type="button" class="btn btn-primary" (click)="getDespesas(formFilterDespesas.value )">
                   Pesquisar
                 </button>
               </div>
