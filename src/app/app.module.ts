@@ -25,6 +25,12 @@ import { CadastraDespesasComponent } from './pages/despesas/cadastra-despesas/ca
 import {MatTabsModule} from "@angular/material/tabs";
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import {DatePipe} from "@angular/common";
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { CadastraUsuarioComponent } from './pages/login/cadastra-usuario/cadastra-usuario.component';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -36,6 +42,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     CadastraDespesasComponent,
     LoginComponent,
     LayoutComponent,
+    CadastraUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,8 @@ import { LayoutComponent } from './components/layout/layout.component';
     MatTabsModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
+    DatePipe,
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
+import {CadastraDespesasComponent} from "../despesas/cadastra-despesas/cadastra-despesas.component";
+import {MatDialog} from "@angular/material/dialog";
+import {CadastraUsuarioComponent} from "./cadastra-usuario/cadastra-usuario.component";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +19,16 @@ export class LoginComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog
   ) {}
+
+  ngOnInit(): void {
+    this.formLogin = this.formBuilder.group({
+      login: new FormControl('', [Validators.email, Validators.required ]),
+      senha: new FormControl('', [Validators.required, Validators.min(3) ])
+    });
+  }
 
   onSubmit(){
     this.authService.getToken(this.formLogin.value)
@@ -34,12 +45,13 @@ export class LoginComponent implements OnInit{
       });
   }
 
-  ngOnInit(): void {
-    this.formLogin = this.formBuilder.group({
-      login: new FormControl('', [Validators.email, Validators.required ]),
-      senha: new FormControl('', [Validators.required, Validators.min(3) ])
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CadastraUsuarioComponent, {
+      width: '520px',
+      height: '500px',
+      data: {
+        title: 'Cadastrar-se',
+      },
     });
   }
-
-
 }

@@ -8,7 +8,7 @@ import {CadastraDespesasComponent} from "./cadastra-despesas/cadastra-despesas.c
 import {DespesasService} from "../../service/despesas.service";
 import {PlanoContas} from "../../shared/plano-contas";
 import * as moment from 'moment';
-
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-despesas',
@@ -38,6 +38,7 @@ export class DespesasComponent implements OnInit{
     private planoContasService : PlanoContasService,
     private despesaService : DespesasService,
     private paginationService: DatatablePaginationService,
+    private datePipe:DatePipe
   ) {
     this.paginationService.setDatatablePagination(this.datatablePagination);
   }
@@ -97,14 +98,14 @@ export class DespesasComponent implements OnInit{
       size : String(this.tableLimit)
     }
 
-    /*if(data !== undefined){
+    if(data !== undefined){
       if(data.dataInicial !== null){
-        data.dataInicial = (moment(data.dataInicial.toUTCString()).format('dd/MM/yyyy HH:mm:ss'));
+        data.dataInicial = this.datePipe.transform(data.dataInicial,'dd/MM/yyyy HH:mm:ss');
       }
       if(data.dataFinal !== null){
-        data.dataFinal = (moment(data.dataFinal.toUTCString()).format('dd/MM/yyyy HH:mm:ss'));
+        data.dataFinal = this.datePipe.transform(data.dataFinal,'dd/MM/yyyy HH:mm:ss');
       }
-    }*/
+    }
 
     const result = {...data, ...params};
 
@@ -136,6 +137,14 @@ export class DespesasComponent implements OnInit{
     }else{
       return "Não";
     }
+  }
+
+  formatarData(value: Date){
+    return value;
+  }
+
+  limpar(){
+    this.createForm()
   }
 
 }

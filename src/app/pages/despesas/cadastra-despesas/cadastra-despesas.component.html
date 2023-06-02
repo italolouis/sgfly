@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
-  <form [formGroup]="formDespesas" (ngSubmit)="onSubmit()">
+  <form [formGroup]="formDespesas">
     <div class="form-group col-md-1">
       <label for="descricao">Descrição</label>
       <mat-form-field class="campoDescricao">
@@ -65,9 +65,11 @@
                   formControlName="observacao"></textarea>
       </mat-form-field>
     </div>
-    <div>
-      <button type="button" class="btn btn-secondary mt-4 ml-2 gap-button" (click)="cancel()">Cancelar</button>
-      <button type="submit" class="btn btn-primary mt-4">Salvar</button>
-    </div>
   </form>
+</div>
+<div mat-dialog-actions>
+  <div class="ps-3">
+    <button class="btn btn-success mt-4 gap-button" (click)="onSubmit()">Salvar</button>
+    <button class="btn btn-primary mt-4 ml-2" (click)="cancel()">Cancelar</button>
+  </div>
 </div>

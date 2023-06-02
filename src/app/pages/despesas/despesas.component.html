@@ -64,13 +64,18 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="row text-right">
-              <div class="col">
-                <button type="button" class="btn btn-secondary gap-button" (click)="openDialog()">
-                  Novo
-                </button>
-                <button type="button" class="btn btn-primary" (click)="getDespesas(formFilterDespesas.value )">
+            <div class="row">
+              <div class="col-md-10">
+                <button type="button" class="btn btn-success gap-button" (click)="getDespesas(formFilterDespesas.value )">
                   Pesquisar
+                </button>
+                <button type="button" class="btn btn-primary" (click)="limpar()">
+                  Limpar
+                </button>
+              </div>
+              <div class="col text-end ms-5">
+                <button type="button" class="btn btn-secondary" (click)="openDialog()">
+                  Novo
                 </button>
               </div>
             </div>
@@ -139,7 +144,7 @@
             <ngx-datatable-column name="Vencimento" prop="dataVencimento" [width]="40" [sortable]="false">
               <ng-template ngx-datatable-cell-template let-row="row">
                 <div class="text-right">
-                  {{ row.dataVencimento }}
+                  {{ formatarData(row.dataVencimento) }}
                 </div>
               </ng-template>
             </ngx-datatable-column>

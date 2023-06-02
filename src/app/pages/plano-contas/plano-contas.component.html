@@ -11,10 +11,6 @@
       </li>
     </ul>
   </div>
-  <!--<a href="#" class="btn-download">
-    <i class='bx bxs-cloud-download' ></i>
-    <span class="text">Download PDF</span>
-  </a>-->
 </div>
 <div style="height: 740px;">
   <div class="row box-info-detail">
@@ -29,13 +25,15 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="row text-right">
-            <div class="col">
-              <button type="button" class="btn btn-secondary gap-button" (click)="openDialog()">
-                Novo
-              </button>
+          <div class="row">
+            <div class="col-md-10">
               <button type="button"class="btn btn-primary">
                 Pesquisar
+              </button>
+            </div>
+            <div class="col text-end ms-5">
+              <button type="button" class="btn btn-secondary" (click)="openDialog()">
+                Novo
               </button>
             </div>
           </div>
@@ -58,7 +56,6 @@
           [externalPaging]="true"
           [count]="datatablePagination.totalElements"
           [offset]="datatablePagination.currentPage">
-
           <ngx-datatable-column name="Plano" prop="descricao" [width]="200" [sortable]="false">
             <ng-template ngx-datatable-cell-template let-row="row">
               <div class="text-right">
