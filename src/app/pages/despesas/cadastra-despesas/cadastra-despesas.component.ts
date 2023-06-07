@@ -55,7 +55,7 @@ export class CadastraDespesasComponent implements OnInit{
     }
 
     data.valor = parseFloat(data.valor);
-    data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY HH:mm:ss')
+    data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY')
 
     this.despesasService.cadastrarDespesas(data)
       .then((response) => {

@@ -31,8 +31,13 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/sass/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "sass"
+              ]
+            },
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
             ]

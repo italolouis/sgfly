@@ -25,7 +25,6 @@
         <label for="dataVencimento">Data Vencimento</label>
         <mat-form-field>
           <input id="dataVencimento" matInput [matDatepicker]="picker1"
-                 [formControl]="formDespesas.controls['dataVencimento']"
                  formControlName="dataVencimento">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 ></mat-datepicker>

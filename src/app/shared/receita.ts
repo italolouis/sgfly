@@ -1,13 +1,12 @@
 import {PlanoContas} from "./plano-contas";
 
-export class Despesa {
+export class Receita {
   id?: number;
   descricao: string = '';
   valor?: number;
-  planoContas: PlanoContas = new PlanoContas();
+  planoContas?: PlanoContas;
   data?: Date;
-  categoria: string = '';
   observacao: string = '';
-  dataVencimento?: Date;
-  pago: boolean = false;
+  dataRecebimento?: Date;
+  recebido: boolean = false;
 }

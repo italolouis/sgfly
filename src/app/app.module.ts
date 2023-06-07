@@ -29,6 +29,8 @@ import {DatePipe} from "@angular/common";
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { CadastraUsuarioComponent } from './pages/login/cadastra-usuario/cadastra-usuario.component';
+import { ReceitasComponent } from './pages/receitas/receitas.component';
+import { CadastraReceitasComponent } from './pages/receitas/cadastra-receitas/cadastra-receitas.component';
 
 registerLocaleData(localePt);
 
@@ -43,6 +45,8 @@ registerLocaleData(localePt);
     LoginComponent,
     LayoutComponent,
     CadastraUsuarioComponent,
+    ReceitasComponent,
+    CadastraReceitasComponent,
   ],
   imports: [
     BrowserModule,
