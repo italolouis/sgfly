@@ -112,7 +112,13 @@ export class DashboardComponent implements OnInit{
   }
 
   onSelect(data: any): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+    if(data.name === 'RECEITA'){
+      this.sumReceitas = data.value;
+    }else if(data.name === 'DESPESA'){
+      this.sumDespesas = data.value;
+    }else{
+      this.getSumReceitasDespesasByPeriod();
+    }
   }
 
   onActivate(data: any): void {
@@ -120,7 +126,7 @@ export class DashboardComponent implements OnInit{
   }
 
   onDeactivate(data: any): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    this.getSumReceitasDespesasByPeriod();
   }
 
 

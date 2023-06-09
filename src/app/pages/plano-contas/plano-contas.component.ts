@@ -12,7 +12,6 @@ import {DatatablePaginationService} from "../../service/datatable-pagination.ser
   styleUrls: ['./plano-contas.component.scss']
 })
 export class PlanoContasComponent implements OnInit{
-  formExtratoContaOrbital = null ;
   columns = [
     { prop: 'descricao', name: 'Plano' },
     { prop: 'padrao', name: 'Padrão' },
@@ -20,8 +19,7 @@ export class PlanoContasComponent implements OnInit{
     { prop: 'dataInicio', name: 'Data Início', sortable: false },
     { prop: 'dataFim', name: 'Data Fim', sortable: false },
   ];
-  rows: any[] = [];
-  loadingIndicator = true;
+
   reorderable = true;
   datatablePagination: DatatablePagination = new DatatablePagination()
   private periodicidadeList: any[] = [];

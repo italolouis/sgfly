@@ -1,0 +1,14 @@
+<div class="head-title">
+    <div class="left">
+        <h1>{{componentTitle}}</h1>
+        <ul class="breadcrumb" *ngIf="componentTitle !== undefined">
+            <li>
+                <a>{{componentTitle}}</a>
+            </li>
+            <li><i class='bx bi-chevron-compact-right' ></i></li>
+            <li routerLink="/page">
+                <a class="active">Dashboard</a>
+            </li>
+        </ul>
+    </div>
+</div>

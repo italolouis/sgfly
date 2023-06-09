@@ -1,100 +1,83 @@
-<div class="head-title">
-  <div class="left">
-    <h1>Plano de Contas</h1>
-    <ul class="breadcrumb">
-      <li>
-        <a>Plano de Contas</a>
-      </li>
-      <li><i class='bx bx-chevron-right' ></i></li>
-      <li>
-        <a class="active">Dashboard</a>
-      </li>
-    </ul>
-  </div>
-</div>
-<div style="height: 740px;">
-  <div class="row box-info-detail">
-    <div class="col-md-12 col-xs-12">
-      <form class="w-100">
-        <div class="col-md-12 col-xs-12" >
-          <div class="form-row align-items-center">
-            <div class="mb-3 col-md-4">
-              <mat-form-field id="plano" class="full-width-field">
-                <mat-label>Plano</mat-label>
-                <input matInput>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10">
-              <button type="button"class="btn btn-primary">
-                Pesquisar
-              </button>
-            </div>
-            <div class="col text-end ms-5">
-              <button type="button" class="btn btn-secondary" (click)="openDialog()">
-                Novo
-              </button>
-            </div>
+<div class="row box-info-detail">
+  <div class="col-md-12 col-xs-12">
+    <form class="w-100">
+      <div class="col-md-12 col-xs-12" >
+        <div class="form-row align-items-center">
+          <div class="mb-3 col-md-4">
+            <mat-form-field id="plano" class="full-width-field">
+              <mat-label>Plano</mat-label>
+              <input matInput>
+            </mat-form-field>
           </div>
         </div>
-      </form>
-      <div class="col-md-12 mt-4">
-        <ngx-datatable
-          #myTable
-          class="bootstrap material"
-          [rows]="datatablePagination.rowData"
-          [columns]="columns"
-          [columnMode]="'force'"
-          [headerHeight]="40"
-          [summaryRow]="true"
-          [summaryPosition]="'bottom'"
-          [footerHeight]="40"
-          [limit]="10"
-          [rowHeight]="36"
-          [reorderable]="reorderable"
-          [externalPaging]="true"
-          [count]="datatablePagination.totalElements"
-          [offset]="datatablePagination.currentPage">
-          <ngx-datatable-column name="Plano" prop="descricao" [width]="200" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.descricao }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Padrão" prop="padrao" [width]="200" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ getSimNao(row.padrao) }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Periodicidade" prop="periodicidade" [width]="200" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.periodicidade }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Data Início" prop="dataInicio" [width]="200" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.dataInicio }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-           <ngx-datatable-column name="Data Fim" prop="dataFim" [width]="200" [sortable]="false">
-            <ng-template ngx-datatable-cell-template let-row="row">
-              <div class="text-right">
-                {{ row.dataFim }}
-              </div>
-            </ng-template>
-          </ngx-datatable-column>
-        </ngx-datatable>
+        <div class="row">
+          <div class="col-md-10">
+            <button type="button" class="btn btn-primary">
+              Pesquisar
+            </button>
+          </div>
+          <div class="col text-end ms-5">
+            <button type="button" class="btn btn-secondary" (click)="openDialog()">
+              Novo
+            </button>
+          </div>
+        </div>
       </div>
+    </form>
+    <div class="col-md-12 mt-4">
+      <ngx-datatable
+        #myTable
+        class="bootstrap material"
+        [rows]="datatablePagination.rowData"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="40"
+        [summaryRow]="true"
+        [summaryPosition]="'bottom'"
+        [footerHeight]="40"
+        [limit]="10"
+        [rowHeight]="36"
+        [reorderable]="reorderable"
+        [externalPaging]="true"
+        [count]="datatablePagination.totalElements"
+        [offset]="datatablePagination.currentPage">
+        <ngx-datatable-column name="Plano" prop="descricao" [width]="200" [sortable]="false">
+          <ng-template ngx-datatable-cell-template let-row="row">
+            <div class="text-right">
+              {{ row.descricao }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Padrão" prop="padrao" [width]="200" [sortable]="false">
+          <ng-template ngx-datatable-cell-template let-row="row">
+            <div class="text-right">
+              {{ getSimNao(row.padrao) }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Periodicidade" prop="periodicidade" [width]="200" [sortable]="false">
+          <ng-template ngx-datatable-cell-template let-row="row">
+            <div class="text-right">
+              {{ row.periodicidade }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Data Início" prop="dataInicio" [width]="200" [sortable]="false">
+          <ng-template ngx-datatable-cell-template let-row="row">
+            <div class="text-right">
+              {{ row.dataInicio }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Data Fim" prop="dataFim" [width]="200" [sortable]="false">
+          <ng-template ngx-datatable-cell-template let-row="row">
+            <div class="text-right">
+              {{ row.dataFim }}
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
     </div>
   </div>
 </div>
-
 

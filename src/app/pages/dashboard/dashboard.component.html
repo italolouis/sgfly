@@ -1,17 +1,5 @@
-<div class="head-title">
-  <div class="left">
-    <h1>Dashboard</h1>
-    <ul class="breadcrumb">
-      <li>
-        <a>Dashboard</a>
-      </li>
-      <li><i class='bx bx-chevron-right' ></i></li>
-      <li>
-        <a class="active">Home</a>
-      </li>
-    </ul>
-  </div>
-  <div class="justify-content-end">
+<div>
+  <div>
     <form [formGroup]="formDashboard">
       <mat-form-field id="plano" class="campoPlanoCategoria">
         <mat-label>Plano</mat-label>
@@ -23,101 +11,102 @@
       </mat-form-field>
     </form>
   </div>
-</div>
-<ul class="box-info">
-  <li>
-    <i class='bx bxs-dollar-circle' ></i>
-    <span class="text">
-          <h3>{{sumReceitas}}</h3>
+  <ul class="box-info">
+    <li>
+      <i class='bx bxs-dollar-circle' ></i>
+      <span class="text">
+          <h3>R${{sumReceitas}}</h3>
           <p>Receita</p>
         </span>
-  </li>
-  <li>
-    <i class='bx bxs-dollar-circle' ></i>
-    <span class="text">
-          <h3>{{sumDespesas}}</h3>
+    </li>
+    <li>
+      <i class='bx bxs-dollar-circle' ></i>
+      <span class="text">
+          <h3>R${{sumDespesas}}</h3>
           <p>Despesa</p>
         </span>
-  </li>
-  <li>
-    <i class='bx bxs-dollar-circle' ></i>
-    <span class="text">
-          <h3>{{sumReceitas - sumDespesas}}</h3>
+    </li>
+    <li>
+      <i class='bx bxs-dollar-circle' ></i>
+      <span class="text">
+          <h3>R${{sumReceitas - sumDespesas}}</h3>
           <p>Saldo</p>
         </span>
-  </li>
-</ul>
-<div class="table-data">
-  <div class="todo">
-    <ngx-charts-bar-vertical-2d
-      [view]="view"
-      [scheme]="colorScheme"
-      [results]="multi"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [legend]="showLegend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [legendTitle]="legendTitle"
-      (select)="onSelect($event)"
-      (activate)="onActivate($event)"
-      (deactivate)="onDeactivate($event)">
-    </ngx-charts-bar-vertical-2d>
-  </div>
-  <!--<div class="order">
-    <div class="head">
-      <h3>Despesas recentes</h3>
-      <i class='bx bx-search' ></i>
-      <i class='bx bx-filter' ></i>
+    </li>
+  </ul>
+  <div class="table-data">
+    <div class="todo">
+      <ngx-charts-bar-vertical-2d
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [legendTitle]="legendTitle"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)">
+      </ngx-charts-bar-vertical-2d>
     </div>
-    <table>
-      <thead>
-      <tr>
-        <th>Dia</th>
-        <th>Descrição</th>
-        <th>Valor</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <p>John Doe</p>
-        </td>
-        <td>01-10-2023</td>
-        <td><span class="status completed">Completed</span></td>
-      </tr>
-      <tr>
-        <td>
-          <p>John Doe</p>
-        </td>
-        <td>01-10-2023</td>
-        <td><span class="status pending">Pending</span></td>
-      </tr>
-      <tr>
-        <td>
-          <p>John Doe</p>
-        </td>
-        <td>01-10-2023</td>
-        <td><span class="status process">Process</span></td>
-      </tr>
-      <tr>
-        <td>
-          <p>John Doe</p>
-        </td>
-        <td>01-10-2023</td>
-        <td><span class="status pending">Pending</span></td>
-      </tr>
-      <tr>
-        <td>
-          <p>John Doe</p>
-        </td>
-        <td>01-10-2023</td>
-        <td><span class="status completed">Completed</span></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>-->
+    <!--<div class="order">
+      <div class="head">
+        <h3>Despesas recentes</h3>
+        <i class='bx bx-search' ></i>
+        <i class='bx bx-filter' ></i>
+      </div>
+      <table>
+        <thead>
+        <tr>
+          <th>Dia</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <p>John Doe</p>
+          </td>
+          <td>01-10-2023</td>
+          <td><span class="status completed">Completed</span></td>
+        </tr>
+        <tr>
+          <td>
+            <p>John Doe</p>
+          </td>
+          <td>01-10-2023</td>
+          <td><span class="status pending">Pending</span></td>
+        </tr>
+        <tr>
+          <td>
+            <p>John Doe</p>
+          </td>
+          <td>01-10-2023</td>
+          <td><span class="status process">Process</span></td>
+        </tr>
+        <tr>
+          <td>
+            <p>John Doe</p>
+          </td>
+          <td>01-10-2023</td>
+          <td><span class="status pending">Pending</span></td>
+        </tr>
+        <tr>
+          <td>
+            <p>John Doe</p>
+          </td>
+          <td>01-10-2023</td>
+          <td><span class="status completed">Completed</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>-->
+
+  </div>
 </div>

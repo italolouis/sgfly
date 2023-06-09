@@ -33,6 +33,12 @@ import { ReceitasComponent } from './pages/receitas/receitas.component';
 import { CadastraReceitasComponent } from './pages/receitas/cadastra-receitas/cadastra-receitas.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
+import { SideNavbarComponent } from './components/layout/fragments/side-navbar/side-navbar.component';
+import { HeaderComponent } from './components/layout/fragments/header/header.component';
+import { ToastComponent } from './components/toast/toast.component';
+import { ToasterComponent } from './components/toast/toaster/toaster.component';
+import {MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 registerLocaleData(localePt);
 
@@ -49,6 +55,10 @@ registerLocaleData(localePt);
     CadastraUsuarioComponent,
     ReceitasComponent,
     CadastraReceitasComponent,
+    SideNavbarComponent,
+    HeaderComponent,
+    ToastComponent,
+    ToasterComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +81,8 @@ registerLocaleData(localePt);
     MatTabsModule,
     NgApexchartsModule,
     NgxChartsModule,
+    MatListModule,
+    MatExpansionModule,
   ],
   providers: [
     DatePipe,

@@ -25,7 +25,11 @@ export class CadastraDespesasComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.createForm(new Despesa());
+    if(this.data.row !== undefined){
+      this.createForm(this.data.row);
+    }else{
+      this.createForm(new Despesa());
+    }
     this.listPlanoContas = this.data.listPlanoContas;
     this.listCategoria = this.data.listCategorias;
   }
@@ -35,6 +39,7 @@ export class CadastraDespesasComponent implements OnInit{
 
   createForm(despesa: Despesa) {
     this.formDespesas = this.formBuilder.group({
+      id: despesa.id,
       descricao: despesa.descricao,
       valor: despesa.valor,
       planoContas: despesa.planoContas,
@@ -55,12 +60,19 @@ export class CadastraDespesasComponent implements OnInit{
     }
 
     data.valor = parseFloat(data.valor);
-    data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY')
+    data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY');
 
-    this.despesasService.cadastrarDespesas(data)
-      .then((response) => {
-        this.cancel();
-      });
+    if(data.id !== undefined){
+      this.despesasService.atualizarDespesas(data)
+        .then((response) => {
+          this.cancel();
+        });
+    }else{
+      this.despesasService.cadastrarDespesas(data)
+        .then((response) => {
+          this.cancel();
+        });
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import Api from "./api";
 import {objectToSearchString} from "serialize-query-params";
+import api from "./api";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,15 @@ export class DespesasService {
   cadastrarDespesas(data: any) {
     return Api.post('/despesa', data)
   }
+
+  deleteDespesa(params: any){
+    return Api.delete('/despesa/'+ params.id );
+  }
+
+  atualizarDespesas(data: any) {
+    return Api.patch('/despesa', data)
+  }
+
 
   getDespesas(params: any) {
     return Api.get('/despesa',  {params: params});

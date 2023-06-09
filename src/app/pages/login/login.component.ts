@@ -5,6 +5,7 @@ import {AuthService} from "../../service/auth.service";
 import {CadastraDespesasComponent} from "../despesas/cadastra-despesas/cadastra-despesas.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CadastraUsuarioComponent} from "./cadastra-usuario/cadastra-usuario.component";
+import {ToastService} from "../../service/toast.service";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit{
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastService:ToastService
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit{
         this.router.navigateByUrl('/pages/dashboard')
       })
       .catch(error => {
-        console.log(error);
+        this.toastService.showErrorToast('Falha', error.message)
       });
   }
 

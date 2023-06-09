@@ -9,6 +9,7 @@ import {DespesasService} from "../../service/despesas.service";
 import {PlanoContas} from "../../shared/plano-contas";
 import * as moment from 'moment';
 import {DatePipe} from "@angular/common";
+import {ToastService} from "../../service/toast.service";
 
 @Component({
   selector: 'app-despesas',
@@ -38,7 +39,8 @@ export class DespesasComponent implements OnInit{
     private planoContasService : PlanoContasService,
     private despesaService : DespesasService,
     private paginationService: DatatablePaginationService,
-    private datePipe:DatePipe
+    private datePipe:DatePipe,
+    private toastService: ToastService
   ) {
     this.paginationService.setDatatablePagination(this.datatablePagination);
   }
@@ -60,7 +62,7 @@ export class DespesasComponent implements OnInit{
     });
   }
 
-  openDialog(): void {
+  openDialog(values?: any): void {
     const dialogRef = this.dialog.open(CadastraDespesasComponent, {
       width: '680px',
       height: '680px',
@@ -68,6 +70,7 @@ export class DespesasComponent implements OnInit{
         title: 'Cadastrar Despesas',
         listPlanoContas: this.listPlanoContas,
         listCategorias : this.listCategorias,
+        row : values
       },
     });
 
@@ -113,6 +116,18 @@ export class DespesasComponent implements OnInit{
       .then((response) => {
         this.paginationService.setInfo(response.data)
       });
+  }
+
+  deleteDespesa(id: string): void{
+    var params = {id : id.toString()};
+
+    this.despesaService.deleteDespesa(params)
+      .then((response: any) => {
+        this.getDespesas()
+        this.toastService.showSuccessToast('Cultura', 'Excluído com sucesso')
+      }).catch(error => {
+        this.toastService.showErrorToast('Falha', error.message)
+    });
   }
 
   formatarDataExtenso(data: Date) {
