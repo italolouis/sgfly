@@ -15,4 +15,8 @@ export class ReceitasService {
   getReceitas(params: any) {
     return Api.get('/receita',  {params: params});
   }
+
+  getSumReceitasByPeriod(params: any) {
+    return Api.get('/receita/sumReceitasPeriod',  {params: params});
+  }
 }

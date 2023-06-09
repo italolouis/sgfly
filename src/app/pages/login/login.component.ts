@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit{
           const acess_token:any = JSON.stringify(dataResponse)
           localStorage.setItem("access", acess_token)
         }
-        this.router.navigateByUrl('/pages')
+        this.router.navigateByUrl('/pages/dashboard')
       })
       .catch(error => {
         console.log(error);

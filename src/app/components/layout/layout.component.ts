@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AuthService} from "../../service/auth.service";
+import {PlanoContas} from "../../shared/plano-contas";
 
 @Component({
   selector: 'app-layout',

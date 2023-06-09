@@ -100,10 +100,10 @@ export class DespesasComponent implements OnInit{
 
     if(data !== undefined){
       if(data.dataInicial !== null){
-        data.dataInicial = this.datePipe.transform(data.dataInicial,'dd/MM/yyyy HH:mm:ss');
+        data.dataInicial = this.datePipe.transform(data.dataInicial,'dd/MM/yyyy');
       }
       if(data.dataFinal !== null){
-        data.dataFinal = this.datePipe.transform(data.dataFinal,'dd/MM/yyyy HH:mm:ss');
+        data.dataFinal = this.datePipe.transform(data.dataFinal,'dd/MM/yyyy');
       }
     }
 

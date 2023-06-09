@@ -31,6 +31,8 @@ import localePt from '@angular/common/locales/pt';
 import { CadastraUsuarioComponent } from './pages/login/cadastra-usuario/cadastra-usuario.component';
 import { ReceitasComponent } from './pages/receitas/receitas.component';
 import { CadastraReceitasComponent } from './pages/receitas/cadastra-receitas/cadastra-receitas.component';
+import {NgApexchartsModule} from "ng-apexcharts";
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 registerLocaleData(localePt);
 
@@ -66,7 +68,9 @@ registerLocaleData(localePt);
     MatRadioModule,
     MatSlideToggleModule,
     NgxDatatableModule,
-    MatTabsModule
+    MatTabsModule,
+    NgApexchartsModule,
+    NgxChartsModule,
   ],
   providers: [
     DatePipe,

@@ -15,14 +15,4 @@ export class AuthService {
   cadastrarUsuario(data: any) {
     return axios.post(this.apiUrl + '/usuario', data)
   }
-
-  getAccessToken(){
-    var dataString = localStorage.getItem("access");
-    if(dataString != null){
-      var data = JSON.parse(dataString);
-      return data.token;
-    }
-
-    return null;
-  }
 }

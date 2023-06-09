@@ -21,4 +21,8 @@ export class DespesasService {
   getCategorias(){
     return Api.get('despesa/categorias')
   }
+
+  getSumDespesasByPeriod(params: any) {
+    return Api.get('/despesa/sumDespesasPeriod',  {params: params});
+  }
 }

@@ -42,4 +42,8 @@ export class PlanoContasService {
   getAllPlanosConta() {
     return Api.get('/planoContas/allPlans');
   }
+
+  getPlanoContaPadrao() {
+    return Api.get('/planoContas/planoPadrao');
+  }
 }
