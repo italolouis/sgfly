@@ -16,6 +16,8 @@ export class CadastraDespesasComponent implements OnInit{
   listPlanoContas: PlanoContas[] = [];
   listCategoria: any[] = [];
 
+  isAdicionar: boolean = true;
+
   constructor(
     public dialogRef: MatDialogRef<CadastraDespesasComponent>,
     @Inject(MAT_DIALOG_DATA)
@@ -27,7 +29,9 @@ export class CadastraDespesasComponent implements OnInit{
   ngOnInit(): void {
     if(this.data.row !== undefined){
       this.createForm(this.data.row);
+      this.isAdicionar = false;
     }else{
+      this.isAdicionar = true;
       this.createForm(new Despesa());
     }
     this.listPlanoContas = this.data.listPlanoContas;
@@ -62,7 +66,7 @@ export class CadastraDespesasComponent implements OnInit{
     data.valor = parseFloat(data.valor);
     data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY');
 
-    if(data.id !== undefined){
+    if(data.id !== null){
       this.despesasService.atualizarDespesas(data)
         .then((response) => {
           this.cancel();

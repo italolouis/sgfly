@@ -15,21 +15,21 @@
     <li>
       <i class='bx bxs-dollar-circle' ></i>
       <span class="text">
-          <h3>R${{sumReceitas}}</h3>
+          <h3>{{sumReceitas | currency:'BRL':'symbol':'0.2-2':'pt'}}</h3>
           <p>Receita</p>
         </span>
     </li>
     <li>
       <i class='bx bxs-dollar-circle' ></i>
       <span class="text">
-          <h3>R${{sumDespesas}}</h3>
+          <h3>{{sumDespesas | currency:'BRL':'symbol':'0.2-2':'pt'}}</h3>
           <p>Despesa</p>
         </span>
     </li>
     <li>
       <i class='bx bxs-dollar-circle' ></i>
       <span class="text">
-          <h3>R${{sumReceitas - sumDespesas}}</h3>
+          <h3>{{sumReceitas - sumDespesas | currency:'BRL':'symbol':'0.2-2':'pt'}}</h3>
           <p>Saldo</p>
         </span>
     </li>

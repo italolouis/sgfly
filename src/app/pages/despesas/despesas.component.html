@@ -76,13 +76,13 @@
         [columnMode]="'force'"
         [headerHeight]="50"
         [footerHeight]="50"
-        [rowHeight]="40"
+        [rowHeight]="48"
         [limit]="tableLimit"
         [externalPaging]="true"
         [offset]="datatablePagination.currentPage"
         [count]="datatablePagination.totalElements"
         [messages]="{emptyMessage: 'Sem dados...'}">
-        <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader>
+        <ngx-datatable-group-header [rowHeight]="60" #myGroupHeader>
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
             <div class="p-2">
               <div class="row">
@@ -101,8 +101,13 @@
         <ngx-datatable-column name="Ações" sortable="false" [maxWidth]="120">
           <ng-template ngx-datatable-cell-template let-row="row">
             <div>
-              <span class="bi bi-pencil me-2 action-button-ok" (click)="openDialog(row)"></span>
-              <span class="bi bi-trash action-button-not-ok" (click)="deleteDespesa(row.id)"></span>
+              <button class="btn btn-primary btn-sm me-1" (click)="openDialog(row)">
+                <i class="bi bi-pencil"></i>
+              </button>
+
+              <button class="btn btn-danger btn-sm" (click)="deleteDespesa(row.id)">
+                <i class="bi bi-trash"></i>
+              </button>
             </div>
           </ng-template>
         </ngx-datatable-column>

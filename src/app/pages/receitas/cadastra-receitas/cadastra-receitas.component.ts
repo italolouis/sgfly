@@ -16,7 +16,8 @@ import {ReceitasService} from "../../../service/receitas.service";
 export class CadastraReceitasComponent implements OnInit{
   formReceitas!: FormGroup;
   listPlanoContas: PlanoContas[] = [];
-  listCategoria: any[] = [];
+
+  isAdicionar: boolean = true;
 
   constructor(
     public dialogRef: MatDialogRef<CadastraReceitasComponent>,
@@ -27,7 +28,13 @@ export class CadastraReceitasComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.createForm(new Receita());
+    if(this.data.row !== undefined){
+      this.createForm(this.data.row);
+      this.isAdicionar = false;
+    }else{
+      this.createForm(new Receita());
+      this.isAdicionar = true;
+    }
     this.listPlanoContas = this.data.listPlanoContas;
   }
   cancel(): void {
@@ -56,10 +63,17 @@ export class CadastraReceitasComponent implements OnInit{
     data.valor = parseFloat(data.valor);
     data.dataRecebimento =  (moment(data.dataRecebimento)).format('DD/MM/YYYY')
 
-    this.receitaService.cadastrarReceitas(data)
-      .then((response) => {
-        this.cancel();
-      });
+    if(data.id !== null){
+      this.receitaService.atualizarReceita(data)
+        .then((response) => {
+          this.cancel();
+        });
+    }else{
+      this.receitaService.cadastrarReceitas(data)
+        .then((response) => {
+          this.cancel();
+        });
+    }
   }
 
 }

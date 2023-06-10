@@ -12,6 +12,15 @@ export class ReceitasService {
     return Api.post('/receita', data)
   }
 
+  deleteReceita(params: any){
+    return Api.delete('/receita/'+ params.id );
+  }
+
+  atualizarReceita(data: any) {
+    return Api.patch('/receita', data)
+  }
+
+
   getReceitas(params: any) {
     return Api.get('/receita',  {params: params});
   }

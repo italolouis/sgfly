@@ -358,44 +358,7 @@ body {
   border-radius: 20px;
   font-weight: 700;
 }
-#content main .table-data .order table tr td .status.completed {
-  background: var(--blue);
-}
-#content main .table-data .order table tr td .status.process {
-  background: var(--yellow);
-}
-#content main .table-data .order table tr td .status.pending {
-  background: var(--orange);
-}
-#content main .table-data .todo {
-  flex-grow: 1;
-  flex-basis: 300px;
-}
-#content main .table-data .todo .todo-list {
-  width: 100%;
-}
-#content main .table-data .todo .todo-list li {
-  width: 100%;
-  margin-bottom: 16px;
-  background: var(--grey);
-  border-radius: 10px;
-  padding: 14px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#content main .table-data .todo .todo-list li .bx {
-  cursor: pointer;
-}
-#content main .table-data .todo .todo-list li.completed {
-  border-left: 10px solid var(--blue);
-}
-#content main .table-data .todo .todo-list li.not-completed {
-  border-left: 10px solid var(--orange);
-}
-#content main .table-data .todo .todo-list li:last-child {
-  margin-bottom: 0;
-}
+
 /* MAIN */
 /* CONTENT */
 @media screen and (max-width: 768px) {
@@ -445,9 +408,6 @@ body {
   #content main .table-data .order table {
     min-width: 420px;
   }
-  #content main .table-data .todo .todo-list {
-    min-width: 420px;
-  }
 }
 
 .full-width-field {
@@ -464,14 +424,4 @@ body {
   min-height: 600px;
   max-height: 740px;
 }
-.action-button-ok{
-  font-size: 20px;
-  color: dodgerblue;
-  font-weight: bold;
-}
 
-.action-button-not-ok{
-  font-size: 20px;
-  color: red;
-  font-weight: bold;
-}

@@ -11,6 +11,7 @@ import {CadastraDespesasComponent} from "../despesas/cadastra-despesas/cadastra-
 import * as moment from "moment/moment";
 import {ReceitasService} from "../../service/receitas.service";
 import {CadastraReceitasComponent} from "./cadastra-receitas/cadastra-receitas.component";
+import {ToastService} from "../../service/toast.service";
 
 @Component({
   selector: 'app-receitas',
@@ -38,7 +39,8 @@ export class ReceitasComponent implements OnInit{
     private planoContasService : PlanoContasService,
     private receitasService : ReceitasService,
     private paginationService: DatatablePaginationService,
-    private datePipe:DatePipe
+    private datePipe:DatePipe,
+    private toastService:ToastService
   ) {
     this.paginationService.setDatatablePagination(this.datatablePagination);
   }
@@ -59,12 +61,13 @@ export class ReceitasComponent implements OnInit{
     });
   }
 
-  openDialog(): void {
+  openDialog(values? : any): void {
     const dialogRef = this.dialog.open(CadastraReceitasComponent, {
       panelClass: 'app-dialog',
       data: {
         title: 'Cadastrar Receitas',
         listPlanoContas: this.listPlanoContas,
+        row: values
       },
     });
 
@@ -103,6 +106,18 @@ export class ReceitasComponent implements OnInit{
       .then((response) => {
         this.paginationService.setInfo(response.data)
       });
+  }
+
+  deleteReceita(id: string): void{
+    var params = {id : id.toString()};
+
+    this.receitasService.deleteReceita(params)
+      .then((response: any) => {
+        this.getReceitas()
+        this.toastService.showSuccessToast('Receita', 'Excluída com sucesso')
+      }).catch(error => {
+      this.toastService.showErrorToast('Falha', error.message)
+    });
   }
 
   formatarDataExtenso(data: Date) {

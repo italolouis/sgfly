@@ -2,6 +2,7 @@ export const MENU_ITEMS= [{
     "text": "Dashboard",
     "icon": "dashboard",
     "routerLink": "/pages/dashboard",
+    "showHeader" : "false"
   },
   {
     "text": "Financeiro",

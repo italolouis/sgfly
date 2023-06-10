@@ -9,6 +9,7 @@ import {MENU_ITEMS} from "../../../../pages/pages-menu";
 })
 export class HeaderComponent implements OnInit{
   componentTitle?: string;
+  visibleHeader?: boolean = true;
 
   constructor(private router: Router) {}
 
@@ -18,7 +19,10 @@ export class HeaderComponent implements OnInit{
         const url = data.routerEvent.url;
         // @ts-ignore
         const menu = this.find(MENU_ITEMS, url);
-        this.componentTitle = menu? menu['text']: undefined;
+        this.componentTitle = menu !== undefined ? menu['text']: undefined;
+        if(menu !== undefined){
+          this.visibleHeader = menu['showHeader'] !== undefined ? this.getBoolean(menu['showHeader']): true;
+        }
       }
     });
   }
@@ -29,4 +33,17 @@ export class HeaderComponent implements OnInit{
     return result;
   };
 
+  getBoolean(value: any){
+    switch(value){
+      case true:
+      case "true":
+      case 1:
+      case "1":
+      case "on":
+      case "yes":
+        return true;
+      default:
+        return false;
+    }
+  }
 }
