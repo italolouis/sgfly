@@ -63,7 +63,7 @@ export class CadastraReceitasComponent implements OnInit{
     data.valor = parseFloat(data.valor);
     data.dataRecebimento =  (moment(data.dataRecebimento)).format('DD/MM/YYYY')
 
-    if(data.id !== null){
+    if(data.id !== null && data.id !== undefined){
       this.receitaService.atualizarReceita(data)
         .then((response) => {
           this.cancel();

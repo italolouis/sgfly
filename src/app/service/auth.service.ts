@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import Api from "./api";
+import {environment} from "../enviroments/enviroments";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8084';
+  private apiUrl = environment.url_server;
   constructor() { }
 
   getToken(data: any){

@@ -66,7 +66,7 @@ export class CadastraDespesasComponent implements OnInit{
     data.valor = parseFloat(data.valor);
     data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY');
 
-    if(data.id !== null){
+    if(data.id !== null && data.id !== undefined){
       this.despesasService.atualizarDespesas(data)
         .then((response) => {
           this.cancel();
