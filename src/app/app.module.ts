@@ -31,7 +31,6 @@ import localePt from '@angular/common/locales/pt';
 import { CadastraUsuarioComponent } from './pages/login/cadastra-usuario/cadastra-usuario.component';
 import { ReceitasComponent } from './pages/receitas/receitas.component';
 import { CadastraReceitasComponent } from './pages/receitas/cadastra-receitas/cadastra-receitas.component';
-import {NgApexchartsModule} from "ng-apexcharts";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { SideNavbarComponent } from './components/layout/fragments/side-navbar/side-navbar.component';
 import { HeaderComponent } from './components/layout/fragments/header/header.component';
@@ -79,7 +78,6 @@ registerLocaleData(localePt);
     MatSlideToggleModule,
     NgxDatatableModule,
     MatTabsModule,
-    NgApexchartsModule,
     NgxChartsModule,
     MatListModule,
     MatExpansionModule,

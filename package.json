@@ -30,7 +30,6 @@
     "d3-scale": "^4.0.2",
     "include-media": "^1.4.10",
     "moment": "^2.29.4",
-    "ng-apexcharts": "^1.7.6",
     "rxjs": "~7.8.0",
     "serialize-query-params": "^2.0.2",
     "tslib": "^2.3.0",

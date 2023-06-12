@@ -2,8 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {PlanoContas} from "../../../shared/plano-contas";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {DespesasService} from "../../../service/despesas.service";
-import {Despesa} from "../../../shared/despesa";
 import * as moment from "moment/moment";
 import {Receita} from "../../../shared/receita";
 import {ReceitasService} from "../../../service/receitas.service";
