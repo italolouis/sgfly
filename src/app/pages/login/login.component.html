@@ -31,7 +31,6 @@
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               <mat-error *ngIf="formLogin.controls['senha'].touched && formLogin.controls['senha'].invalid">
                 <span *ngIf="formLogin.controls['senha'].errors.required">Senha é obrigatória.</span>
-                <span *ngIf="formLogin.controls['senha'].errors.min">Senha é inválida.</span>
               </mat-error>
             </mat-form-field>
           </div>
