@@ -13,7 +13,7 @@
           <div class="col-md-3">
             <mat-form-field class="full-width-field">
               <mat-label>Período</mat-label>
-              <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
+              <mat-date-range-input [rangePicker]="picker">
                 <input matStartDate placeholder="Início"
                        [formControl]="formFilterDespesas.controls['dataInicial']"
                        formControlName="dataInicial">
@@ -69,10 +69,8 @@
     <div class="col-md-12 mt-3" id="tableDespesas">
       <ngx-datatable
         #myTable
-        class="material bootstrap"
+        class="bootstrap material explandable"
         [rows]="datatablePagination.rowData"
-        [groupRowsBy]="'dataVencimento'"
-        [groupExpansionDefault]="true"
         [columnMode]="'force'"
         [headerHeight]="50"
         [footerHeight]="50"
@@ -82,21 +80,17 @@
         [offset]="datatablePagination.currentPage"
         [count]="datatablePagination.totalElements"
         [messages]="{emptyMessage: 'Sem dados...'}">
-        <ngx-datatable-group-header [rowHeight]="60" #myGroupHeader>
-          <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+        <!--<ngx-datatable-group-header [rowHeight]="60" #myGroupHeader>
+          <ng-template let-group="group" let-expanded="expanded" #myGroupHeader ngx-datatable-group-header-template>
             <div class="p-2">
               <div class="row">
                 <div class="col-md-10">
                   <span class="fw-bold">{{formatarDataExtenso(group.value[0].dataVencimento)}}</span>
                 </div>
-                <!--<div class="col-md-2 text-right">
-                  <span class="font-weight-bold">Saldo do dia: </span>
-                  <span class="font-weight-bold">{{ sumValor(group) | currency:'BRL':'symbol':'0.2-2':'pt' }}</span>
-                </div>-->
               </div>
             </div>
           </ng-template>
-        </ngx-datatable-group-header>
+        </ngx-datatable-group-header>-->
 
         <ngx-datatable-column name="Ações" sortable="false" [maxWidth]="120">
           <ng-template ngx-datatable-cell-template let-row="row">
@@ -166,7 +160,7 @@
                              [pagerRightArrowIcon]="'fa fa-angle-double-right '" [pagerPreviousIcon]="'fa fa-angle-left'"
                              [pagerNextIcon]="'fa fa-angle-right '" [page]="curPage" [size]="pageSize" [count]="rowCount"
                              [hidden]="!((rowCount / pageSize) > 1)"
-                             (change)="getDespesas(null, $event.page-1)">
+                             (change)="getDespesas(formFilterDespesas.value, $event.page-1)">
             </datatable-pager>
           </ng-template>
         </ngx-datatable-footer>

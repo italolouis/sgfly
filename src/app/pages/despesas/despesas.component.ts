@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DatatablePagination} from "../../shared/datatable-pagination";
 import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
@@ -10,6 +10,7 @@ import {PlanoContas} from "../../shared/plano-contas";
 import * as moment from 'moment';
 import {DatePipe} from "@angular/common";
 import {ToastService} from "../../service/toast.service";
+import {DatatableComponent} from "@swimlane/ngx-datatable";
 
 @Component({
   selector: 'app-despesas',
@@ -17,7 +18,8 @@ import {ToastService} from "../../service/toast.service";
   styleUrls: ['./despesas.component.scss']
 })
 export class DespesasComponent implements OnInit{
-  tableLimit = 8;
+
+  tableLimit = 10;
   id?: number;
   descricao: string = '';
   planoContas?: PlanoContas;
@@ -25,11 +27,6 @@ export class DespesasComponent implements OnInit{
   datatablePagination: DatatablePagination = new DatatablePagination()
   listPlanoContas: any[] = [];
   listCategorias: any[] = [];
-
-  dateRange = new FormGroup({
-    dataInicial: new FormControl(),
-    dataFinal: new FormControl()
-  });
 
   formFilterDespesas!: FormGroup;
 
@@ -64,8 +61,8 @@ export class DespesasComponent implements OnInit{
 
   openDialog(values?: any): void {
     const dialogRef = this.dialog.open(CadastraDespesasComponent, {
-      width: '680px',
-      height: '680px',
+      width: '660px',
+      height: '600px',
       data: {
         title: 'Cadastrar Despesas',
         listPlanoContas: this.listPlanoContas,
@@ -96,9 +93,12 @@ export class DespesasComponent implements OnInit{
   }
 
   getDespesas(data?: any, page?: string): void{
-    var params = {
-      page : page ? String(page) : 0,
+    let params: any = {
       size : String(this.tableLimit)
+    }
+
+    if(page){
+      params['page'] = page;
     }
 
     if(data !== undefined){

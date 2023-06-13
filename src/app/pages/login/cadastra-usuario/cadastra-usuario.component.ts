@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Usuario} from "../../../shared/usuario";
 import {UsuarioService} from "../../../service/usuario.service";
@@ -29,18 +29,19 @@ export class CadastraUsuarioComponent implements OnInit{
 
   createForm(usuario: Usuario) {
     this.formUsuario = this.formBuilder.group({
-      cpfCnpj: usuario.cpfCnpj,
-      nome: usuario.nome,
-      login: usuario.login,
-      senha: usuario.senha,
+      cpfCnpj: new FormControl(usuario.cpfCnpj, [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/) ], ),
+      nome: new FormControl(usuario.nome, [Validators.required ]),
+      login: new FormControl(usuario.login, [Validators.email, Validators.required ]),
+      senha: new FormControl(usuario.senha, [Validators.email, Validators.required ]),
     });
   }
 
   onSubmit() {
-    this.authService.cadastrarUsuario(this.formUsuario.value)
-      .then((response) => {
-        this.cancel();
-      });
+    if (this.formUsuario.valid) {
+      this.authService.cadastrarUsuario(this.formUsuario.value)
+        .then((response) => {
+          this.cancel();
+        });
+    }
   }
-
 }

@@ -19,7 +19,7 @@ export class DatatablePaginationService {
 
   setInfo(data: any) {
     if (data.content != null) {
-      this.datatablePagination.rowData = data.content;
+      this.datatablePagination.rowData = [...data.content];
       this.datatablePagination.currentPage = data.number
       this.datatablePagination.totalPages = data.totalPages
       this.datatablePagination.totalElements = data.totalElements

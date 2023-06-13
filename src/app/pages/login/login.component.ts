@@ -33,18 +33,20 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit(){
-    this.authService.getToken(this.formLogin.value)
-      .then(response => {
-        let dataResponse = response.data
-        if(dataResponse){
-          const acess_token:any = JSON.stringify(dataResponse)
-          localStorage.setItem("access", acess_token)
-        }
-        this.router.navigateByUrl('/pages/dashboard')
-      })
-      .catch(error => {
-        this.toastService.showErrorToast('Falha', error.message)
-      });
+    if(this.formLogin.valid){
+      this.authService.getToken(this.formLogin.value)
+        .then(response => {
+          let dataResponse = response.data
+          if(dataResponse){
+            const acess_token:any = JSON.stringify(dataResponse)
+            localStorage.setItem("access", acess_token)
+          }
+          this.router.navigateByUrl('/pages/dashboard')
+        })
+        .catch(error => {
+          this.toastService.showErrorToast('Falha', error.message)
+        });
+    }
   }
 
   openDialog(): void {

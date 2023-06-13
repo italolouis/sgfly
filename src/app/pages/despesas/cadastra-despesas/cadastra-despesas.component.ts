@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {PlanoContas} from "../../../shared/plano-contas";
 import {Despesa} from "../../../shared/despesa";
@@ -15,6 +15,8 @@ export class CadastraDespesasComponent implements OnInit{
   formDespesas!: FormGroup;
   listPlanoContas: PlanoContas[] = [];
   listCategoria: any[] = [];
+
+  moneyValue: number = 0;
 
   isAdicionar: boolean = true;
 
@@ -44,38 +46,40 @@ export class CadastraDespesasComponent implements OnInit{
   createForm(despesa: Despesa) {
     this.formDespesas = this.formBuilder.group({
       id: despesa.id,
-      descricao: despesa.descricao,
-      valor: despesa.valor,
-      planoContas: despesa.planoContas,
-      categoria: despesa.categoria,
+      descricao: new FormControl(despesa.descricao, [Validators.required ]),
+      valor: new FormControl(despesa.valor, [Validators.required ]),
+      planoContas: new FormControl(despesa.planoContas, [Validators.required ]),
+      categoria: new FormControl(despesa.categoria, [Validators.required ]),
       observacao: despesa.observacao,
-      dataVencimento: despesa.dataVencimento,
+      dataVencimento: new FormControl(despesa.dataVencimento, [Validators.required ]),
       pago: despesa.pago,
     });
   }
 
   onSubmit() {
-    var data = this.formDespesas.value;
-    var planoId = Number(data.planoContas);
+    if(this.formDespesas.valid){
+      var data = this.formDespesas.value;
+      var planoId = Number(data.planoContas);
 
-    if(planoId !== null){
-      var planoContasData = this.listPlanoContas.find(i => i.id === planoId);
-      data.planoContas = planoContasData;
-    }
+      if(planoId !== null){
+        var planoContasData = this.listPlanoContas.find(i => i.id === planoId);
+        data.planoContas = planoContasData;
+      }
 
-    data.valor = parseFloat(data.valor);
-    data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY');
+      data.valor = parseFloat(data.valor);
+      data.dataVencimento =  (moment(data.dataVencimento)).format('DD/MM/YYYY');
 
-    if(data.id !== null && data.id !== undefined){
-      this.despesasService.atualizarDespesas(data)
-        .then((response) => {
-          this.cancel();
-        });
-    }else{
-      this.despesasService.cadastrarDespesas(data)
-        .then((response) => {
-          this.cancel();
-        });
+      if(data.id !== null && data.id !== undefined){
+        this.despesasService.atualizarDespesas(data)
+          .then((response) => {
+            this.cancel();
+          });
+      }else{
+        this.despesasService.cadastrarDespesas(data)
+          .then((response) => {
+            this.cancel();
+          });
+      }
     }
   }
 

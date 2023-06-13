@@ -2,16 +2,16 @@
   <div mat-dialog-title>{{data.title}}</div>
   <mat-dialog-content>
     <div class="form-group col-md-1">
-      <label for="descricao">Descrição</label>
       <mat-form-field class="campoDescricao">
+        <mat-label>Descrição</mat-label>
         <input id="descricao" matInput
                formControlName="descricao">
       </mat-form-field>
     </div>
 
     <div class="form-group col-md-1">
-      <label for="valor">Valor</label>
       <mat-form-field>
+        <mat-label>Valor</mat-label>
         <input id="valor" matInput
                formControlName="valor">
       </mat-form-field>
@@ -19,8 +19,8 @@
 
     <div class="form-group col-md-12 row">
       <div class="col-md-6">
-        <label for="dataRecebimento">Data Recebimento</label>
         <mat-form-field>
+          <mat-label>Data Recebimento</mat-label>
           <input id="dataRecebimento" matInput [matDatepicker]="picker1"
                  formControlName="dataRecebimento">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -31,8 +31,8 @@
 
     <div class="col-md-14 row" *ngIf="isAdicionar">
       <div class="form-group col-md-5">
-        <label for="plano">Plano</label>
         <mat-form-field id="plano" class="campoPlanoCategoria">
+          <mat-label>Plano</mat-label>
           <mat-select [formControl]="formReceitas.controls['planoContas']"
                       formControlName="planoContas">
             <mat-option *ngFor="let plano of listPlanoContas" value="{{ plano.id }}">

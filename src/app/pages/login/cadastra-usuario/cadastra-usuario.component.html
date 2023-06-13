@@ -4,35 +4,39 @@
     <div class="col-md-12 mt-1">
       <mat-form-field id="name" class="full-width-field">
         <mat-label>Nome</mat-label>
-        <input matInput
-               formControlName="nome"
-               required>
+        <input matInput formControlName="nome" required>
+        <mat-error *ngIf="formUsuario.controls['nome'].touched && formUsuario.controls['nome'].invalid">
+          <span *ngIf="formUsuario.controls['nome'].errors.required">Senha é obrigatório.</span>
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="col-md-12">
       <mat-form-field id="cpfCnpj" class="full-width-field">
-        <mat-label>CPF/CNPJ</mat-label>
-        <input matInput
-               formControlName="cpfCnpj"
-               required
-               ui-br-cpfcnpj-mask>
+        <mat-label>CPF</mat-label>
+        <input matInput formControlName="cpfCnpj" required>
+        <mat-error *ngIf="formUsuario.controls['cpfCnpj'].touched && formUsuario.controls['cpfCnpj'].invalid">
+          <span *ngIf="formUsuario.controls['cpfCnpj'].errors.required">CPF é obrigatório.</span>
+          <span *ngIf="formUsuario.controls['cpfCnpj'].errors.pattern">CPF inválido.</span>
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="col-md-12">
       <mat-form-field id="login" class="full-width-field">
         <mat-label>Login</mat-label>
-        <input matInput
-               formControlName="login"
-               required>
+        <input matInput formControlName="login" required>
+        <mat-error *ngIf="formUsuario.controls['login'].touched && formUsuario.controls['login'].invalid">
+          <span *ngIf="formUsuario.controls['login'].errors.required">Login é obrigatório.</span>
+          <span *ngIf="formUsuario.controls['login'].errors.email">Login inválido.</span>
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="col-md-12">
       <mat-form-field id="senha" class="full-width-field">
         <mat-label>Senha</mat-label>
-        <input matInput
-               formControlName="senha"
-               type="password"
-               required>
+        <input matInput formControlName="senha" type="password" required>
+        <mat-error *ngIf="formUsuario.controls['senha'].touched && formUsuario.controls['senha'].invalid">
+          <span *ngIf="formUsuario.controls['senha'].errors.required">Senha é obrigatório.</span>
+        </mat-error>
       </mat-form-field>
     </div>
   </form>

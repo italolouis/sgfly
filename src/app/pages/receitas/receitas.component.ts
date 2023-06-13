@@ -17,7 +17,7 @@ import {ToastService} from "../../service/toast.service";
   styleUrls: ['./receitas.component.scss']
 })
 export class ReceitasComponent implements OnInit{
-  tableLimit = 8;
+  tableLimit = 10;
   id?: number;
   descricao: string = '';
   planoContas?: PlanoContas;

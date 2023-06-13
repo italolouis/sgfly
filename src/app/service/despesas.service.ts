@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import Api from "./api";
-import {objectToSearchString} from "serialize-query-params";
-import api from "./api";
 
 @Injectable({
   providedIn: 'root'

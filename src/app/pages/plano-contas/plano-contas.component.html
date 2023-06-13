@@ -27,12 +27,10 @@
     <div class="col-md-12 mt-4">
       <ngx-datatable
         #myTable
-        class="bootstrap material"
+        class="material bootstrap"
         [rows]="datatablePagination.rowData"
-        [columns]="columns"
         [columnMode]="'force'"
         [headerHeight]="40"
-        [summaryRow]="true"
         [summaryPosition]="'bottom'"
         [footerHeight]="40"
         [limit]="10"
