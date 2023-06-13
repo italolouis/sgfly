@@ -34,6 +34,9 @@
       <mat-form-field id="senha" class="full-width-field">
         <mat-label>Senha</mat-label>
         <input matInput formControlName="senha" type="password" required>
+        <mat-error *ngIf="formUsuario.controls['senha'].touched && formUsuario.controls['senha'].invalid">
+          <span *ngIf="formUsuario.controls['senha'].errors.required">Senha é obrigatório.</span>
+        </mat-error>
       </mat-form-field>
     </div>
   </form>

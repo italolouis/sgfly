@@ -32,7 +32,7 @@ export class CadastraUsuarioComponent implements OnInit{
       cpfCnpj: new FormControl(usuario.cpfCnpj, [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/) ], ),
       nome: new FormControl(usuario.nome, [Validators.required ]),
       login: new FormControl(usuario.login, [Validators.email, Validators.required ]),
-      senha: new FormControl(usuario.senha, [Validators.email, Validators.required ]),
+      senha: new FormControl(usuario.senha, [Validators.required ]),
     });
   }
 
