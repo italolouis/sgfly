@@ -19,7 +19,7 @@ export class LayoutComponent {
   }
 
   logout(){
-    localStorage.removeItem("acess");
+    localStorage.removeItem("access");
     this.router.navigateByUrl('/')
   }
 }
